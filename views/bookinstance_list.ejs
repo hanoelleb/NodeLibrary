@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include('navbar') %>
+    <ul>
+        <% for (var i = 0; i < bookinstance_list.length; i++) {%>
+            <li>
+                <a href= <%= bookinstance_list[i].url %> >
+                  <%= bookinstance_list[i].book.title %> : 
+		  <%= bookinstance_list[i].imprint %> -
+		  <% if (bookinstance_list[i].status == 'Available') { %>
+		      <span class='text-success'><%= bookinstance_list[i].status %></span>
+		  <% } else if (bookinstance_list[i].status == 'Maintenence') { %>
+                      <span class='text-danger'><%= bookinstance_list[i].status %></span>
+		  <% } else { %>
+		      <span class='text-warning'><%= bookinstance_list[i].status %></span>
+		  <% } %>
+		  <% if (bookinstance_list[i].status != 'Available') %>
+		      <span class='text-warning'><%= bookinstance_list[i].due_back_formatted %></span>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+  </body>
+</html>

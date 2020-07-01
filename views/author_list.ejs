@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include('navbar') %>
+    <ul>
+        <% for (var i = 0; i < author_list.length; i++) {%>
+            <li>
+                <a href= <%= author_list[i].url %> >
+                <%= author_list[i].name %> 
+		(<%= author_list[i].formatted_birth_date %> - 
+		 <%= author_list[i].formatted_death_date %>)
+                </a>
+            </li>
+        <% } %>
+    </ul>
+  </body>
+</html>
+

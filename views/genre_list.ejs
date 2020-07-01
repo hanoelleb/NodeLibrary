@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include('navbar') %>
+    <ul>
+        <% for (var i = 0; i < genre_list.length; i++) {%>
+            <li>
+		<a href= <%= genre_list[i].url %> >
+                <%= genre_list[i].name %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+  </body>
+</html>
+

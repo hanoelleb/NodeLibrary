@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include('navbar') %>
+    <ul> 
+	<% for (var i = 0; i < book_list.length; i++) {%>
+	    <li>
+		<a href= <%= book_list[i].url %> >
+                <%= book_list[i].title %> (<%= book_list[i].author.name %>)
+	        </a>
+	    </li>
+	<% } %>
+    </ul>
+  </body>
+</html>
+~          
