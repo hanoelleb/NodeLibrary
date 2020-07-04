@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <h1><%= title %> : <%= author.name %></h1>
+    <p><%= author.formatted_birth_date %>-
+       <%= author.formatted_death_date %>
+    </p>
+
+    <% if ( locals.author_books ) { %>
+    <% if (author_books.length > 0 ) { %>
+    <p>Delete the following books before attempting to delete this author.</p>
+    <h4>Books</h4>
+    <dl>
+        <% for (var i = 0; i < author_books.length; i++) { %>
+	    <dt>
+	        <a href= <%= author_books[i].url %> >
+		    <%= author_books[i].title %>
+		</a>
+	    </dt>
+	    <dd><%= author_books[i].summary %></dd>
+	<% } %>
+    </dl>
+    <% } else { %>
+        <p>Do you really want to delete this Author?</p>
+	<form>
+            <input type='hidden' name='authorid' required='true' 
+		    value=<%= author._id %> ></input>
+            <input type='submit' value='Delete'></input>
+        </form>
+    <% } %>
+    <% } %>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+     <form method='POST' action=''>
+         <label>Title: </label>
+         <input name='title' type='text' required='true' 
+             placeholder='Name of book'
+	     value= <%= 'undefined' == typeof locals.book ? '' : book.title %> 
+         >
+         </input>
+
+	 <label>Author: </label>
+	 <select name='author' required='true'>
+	     <% authors.sort(function(a, b) {
+	      let textA = a.family_name.toUpperCase(); 
+	      let textB = b.family_name.toUpperCase(); 
+	      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+	      });
+	     %>
+
+	     <% for (var i = 0; i < authors.length; i++) { %>
+                 <% if (locals.book) { %>
+		      <option value= <%= authors[i]._id %>  
+		      selected= <% authors[i]._id.toString()==book.authors[i] ?
+		          'selected' : false %>
+		      >
+		      <%= authors[i].name %>
+		      </option>
+		 <% } else { %>
+		      <option value = <% authors[i]._id %>>
+		          <%= authors[i].name %>
+		      </option>
+		 <% } %>
+	     <% } %>
+         </select>
+
+	 <label>Summary: </label>
+	 <textarea placeholder='Summary' name='summary' rows='3' 
+		 required='true'>
+                <% 'undefined' === typeof book ? '' : book.summary %>
+	 </textarea>
+
+	 <label>ISBN: </label>
+	 <input type='text' placeholder='ISBN13' name='isbn' required='true'
+             value=<% 'undefined' == typeof book ?
+	     '' : book.isbn %>>
+	 </input>
+
+	 <label>Genre: </label>
+	 <% for (var i = 0; i < genres.length; i++) { %>
+	     <input type='checkbox' name='genre' id=<%= genres[i]._id %>
+                 value=<%= genres[i]._id %> checked=<%= genres[i].checked %>
+	     >
+	     <label><%= genres[i].name %></label>
+	     </input>
+	 <% } %> 
+
+         <input type='submit' value='Add Book'></input>
+
+         <% if (locals.errors) { %>
+             <ul>
+                 <% for (var i = 0; i < errors.length; i++) { %>
+                     <li><%= errors[i].msg %></li>
+                 <% } %>
+             </ul>
+         <% } %>
+     <form>
+   </body>
+</html>

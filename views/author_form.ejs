@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+     <form method='POST' action=''>
+         <label>First Name: </label>
+         <input name='first_name' type='text' 
+             placeholder='First Name'
+             value= <%= 'undefined' == typeof locals.author ? 
+	         '' : author.first_name %> 
+         >
+         </input>
+
+	 <label>Family Name: </label>
+         <input name='family_name' type='text'
+             placeholder='Family Name'
+             value= <%= 'undefined' == typeof locals.author ?
+                 '' : author.family_name %>
+         >
+         </input>
+
+	 <label>Date of Birth: </label>
+	 <input name='date_of_birth' type='date'
+             placeholder='dd/mm/yyyy'
+             value= <%= 'undefined' == typeof locals.author ?
+	     '' : author.date_of_birth %>
+	 >
+	 </input>
+
+	 <label>Date of Death: </label>
+         <input name='date_of_death' type='date'
+             placeholder='dd/mm/yyyy'
+             value= <%= 'undefined' == typeof locals.author ?
+             '' : author.date_of_death %>
+         >
+         </input>
+
+         <input type='submit' value='Add Author'></input>
+
+         <% if (locals.errors) { %>
+             <ul>
+                 <% for (var i = 0; i < errors.length; i++) { %>
+                     <li><%= errors[i].msg %></li>
+                 <% } %>
+             </ul>
+         <% } %>
+     <form>
+
+
+  </body>
+</html>

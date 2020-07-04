@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+     <form method='POST' action=''>
+         <label>Book: </label>
+	 <select placeholder='Select book' name='book' required='true'>
+	 <% book_list.sort( function(a,b) {
+	         let textA = a.title.toUpperCase(); 
+		 let textB = b.title.toUpperCase(); 
+		 return (textA < textB) ? 
+		     -1 : (textA > textB) ? 1 : 0;
+             }); %>
+
+	 <% for (var i = 0; i < book_list.length; i++ ) { %>
+              <% if (locals.bookinstance) { %>
+	          <option value=<%= book_list[i]._id %>
+                      selected=<%=
+                          bookinstance.book.toString() ==
+                          book._id.toString() ? 'selected' : false %>
+                  >
+                      <%= book_list[i].title %>
+                  </option>
+	      <% } else { %>
+	           <option>
+                      <%= book_list[i].title %>
+                  </option>
+	      <% } %>
+	 <% } %>
+	 </select>
+
+	 <label>Imprint: </label>
+	 <input type='text' placeholder='Publisher and date information' 
+	     name='imprint' required='true' value=<%= 'undefined'
+	         === typeof bookinstance ? '' : bookinstance.imprint %> 
+	 >
+	 </input>
+
+	 <label>Date when book available: </label>
+	 <input type='date' name='due_back' value= <% 'undefined' ===
+	     typeof bookinstance ? '' : bookinstance.due_back%> >
+	 </input>
+
+	 <label>Status: </label>
+	 <select placeholder='Select status' name='status' required='true'>
+             <option value='Maintenance'>Maintenance</option>
+             <option value='Available'>Available</option>
+             <option value='Loaned'>Loaned</option>
+             <option value='Reserved'>Reserved</option>
+         </select>
+
+	 <input type='submit' value='Add instance'></input>
+
+         <% if (locals.errors) { %>
+             <ul>
+                 <% for (var i = 0; i < errors.length; i++) { %>
+                     <li><%= errors[i].msg %></li>
+                 <% } %>
+             </ul>
+         <% } %>
+     <form>
+ </body>
+</html>
