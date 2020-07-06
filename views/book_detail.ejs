@@ -19,6 +19,7 @@
     <p>
         ISBN: <%= book.isbn %>
     </p>
+    <p>
         Genre:
         <% for (var i = 0; i < book.genre.length; i++) { %>
 	<a href= <%= book.genre[i].url %> >
@@ -28,6 +29,7 @@
 	    <% } %>
 	</a>
 	<% } %>
+    </p>
     <h4>Copies</h4>
 	<% for (var i = 0; i < book_instances.length; i++ ) { %>
 	    <hr>
@@ -42,9 +44,17 @@
 	<% } %>
 
 
-	<% if (book.genre.length == 0) { %>
+	<% if (book_instances.length == 0) { %>
 	    <p>There are no copies of this book in the library.</p>
 	<% } %>
+	<hr>
+	    <p>
+	        <a href=<%= book.url + '/delete' %>>Delete book</a>
+	    </p>
+	    <p>
+	        <a href=<%= book.url + '/update' %>>Update book</a>
+	    </p>
+	</hr>
   </body>
 </html>
 

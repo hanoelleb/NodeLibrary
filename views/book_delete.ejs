@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <h1><%= title %> : <%= book.title %></h1> 
+    <p>Author: <%= book.author.name %></p>
+    <p>Summary: <%= book.summary %> </p>
+    <p>ISBN: <%= book.isbn %></p>
+    <p>Genre:
+        <% for (var i = 0; i < book.genre.length; i++) { %>
+        <a href= <%= book.genre[i].url %> >
+            <%= book.genre[i].name %>
+            <% if (i < book.genre.length - 1) { %>
+              ,
+            <% } %>
+        </a>
+        <% } %>
+    </p>
+    <form method='POST' action=''>
+	<input type='hidden' name='bookid' required='true'
+	    value=<%= book._id%>>
+	</input>
+	<input type='submit' value='Delete'></input>
+    </form>
+  </body>
+</html>
