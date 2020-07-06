@@ -15,7 +15,8 @@
          </input>
 
 	 <label>Author: </label>
-	 <select name='author' required='true'>
+	 <select name='author' required='true' 
+	     type='select' placeholder='Select Author'>
 	     <% authors.sort(function(a, b) {
 	      let textA = a.family_name.toUpperCase(); 
 	      let textB = b.family_name.toUpperCase(); 
@@ -24,18 +25,19 @@
 	     %>
 
 	     <% for (var i = 0; i < authors.length; i++) { %>
-                 <% if (locals.book) { %>
-		      <option value= <%= authors[i]._id %>  
-		      selected= <% authors[i]._id.toString()==book.authors[i] ?
-		          'selected' : false %>
-		      >
-		      <%= authors[i].name %>
-		      </option>
-		 <% } else { %>
-		      <option value = <% authors[i]._id %>>
-		          <%= authors[i].name %>
-		      </option>
-		 <% } %>
+	         <% if (locals.book) { %>
+		     <option value=<%= authors[i]._id %>
+		     selected= <%= (authors[i]._id.toString() == 
+                     book.author._id || 
+                     authors[i]._id.toString() == book.author) ?
+		     'selected' : false %>>
+		     <%= authors[i].name %>
+		     </option>
+                 <% } else { %>
+                     <option value=<%= authors[i]._id %>>
+		         <%= authors[i].name %>
+		     </option>
+	         <% } %>
 	     <% } %>
          </select>
 

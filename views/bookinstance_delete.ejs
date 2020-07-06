@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='../public/stylesheets/style.css' />
+    <meta charset='UTF-8'></meta>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <h1><%= title %> : <%= bookinstance._id %></h1>
+    <p>Title: <%= bookinstance.book.title %></p>
+    <p>Imprint: <%= bookinstance.imprint %></p>
+    <p>Status: <%=bookinstance.status %></p>
+
+     <p>Do you really want to delete this Instance?</p>
+        <form method='POST' action=''>
+            <input type='hidden' name='instanceid' required='true'
+                    value=<%= bookinstance._id %> ></input>
+            <input type='submit' value='Delete'></input>
+        </form>
+  </body>
+</html>

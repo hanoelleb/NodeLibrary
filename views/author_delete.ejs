@@ -28,7 +28,7 @@
     </dl>
     <% } else { %>
         <p>Do you really want to delete this Author?</p>
-	<form>
+	<form method='POST' action=''>
             <input type='hidden' name='authorid' required='true' 
 		    value=<%= author._id %> ></input>
             <input type='submit' value='Delete'></input>

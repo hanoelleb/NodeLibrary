@@ -20,13 +20,16 @@
               <% if (locals.bookinstance) { %>
 	          <option value=<%= book_list[i]._id %>
                       selected=<%=
-                          bookinstance.book.toString() ==
-                          book._id.toString() ? 'selected' : false %>
+                          (bookinstance.book.toString() ==
+                          book._id.toString() ||
+			  bookinstance.book._id === 
+			  book_list[i]._id.toString()
+			  ) ? 'selected' : false %>
                   >
                       <%= book_list[i].title %>
                   </option>
 	      <% } else { %>
-	           <option>
+	          <option value= <%= book_list[i]._id%>>
                       <%= book_list[i].title %>
                   </option>
 	      <% } %>
