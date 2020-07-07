@@ -21,7 +21,7 @@
 	          <option value=<%= book_list[i]._id %>
                       selected=<%=
                           (bookinstance.book.toString() ==
-                          book._id.toString() ||
+                          book_list[i]._id.toString() ||
 			  bookinstance.book._id === 
 			  book_list[i]._id.toString()
 			  ) ? 'selected' : false %>
@@ -38,22 +38,34 @@
 
 	 <label>Imprint: </label>
 	 <input type='text' placeholder='Publisher and date information' 
-	     name='imprint' required='true' value=<%= 'undefined'
-	         === typeof bookinstance ? '' : bookinstance.imprint %> 
+	     name='imprint' required='true' value=<%= locals.bookinstance ? 
+	     bookinstance.imprint : '' %> 
 	 >
 	 </input>
 
 	 <label>Date when book available: </label>
-	 <input type='date' name='due_back' value= <% 'undefined' ===
-	     typeof bookinstance ? '' : bookinstance.due_back%> >
+	 <input type='date' name='due_back' value= <%= locals.bookinstance ? 
+	 bookinstance.update_date : '' %>>
 	 </input>
 
 	 <label>Status: </label>
 	 <select placeholder='Select status' name='status' required='true'>
-             <option value='Maintenance'>Maintenance</option>
-             <option value='Available'>Available</option>
-             <option value='Loaned'>Loaned</option>
-             <option value='Reserved'>Reserved</option>
+             <option value='Maintenance' selected=<%= (locals.bookinstance &&
+	     bookinstance.status =='Maintenance') ? 'selected' : false %>>
+		 Maintenance
+             </option>
+             <option value='Available' selected=<%= (locals.bookinstance &&
+             bookinstance.status=='Available') ? 'selected' : false %>>
+	         Available
+	     </option>
+             <option value='Loaned' selected=<%= (locals.bookinstance &&
+             bookinstance.status=='Loaned') ? 'selected' :false %>>
+	         Loaned
+	     </option>
+             <option value='Reserved' selected=<%= (locals.bookinstance &&
+             bookinstance.status=='Reserved') ? 'selected' : false %>>
+	         Reserved
+	     </option>
          </select>
 
 	 <input type='submit' value='Add instance'></input>

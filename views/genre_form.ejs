@@ -10,7 +10,7 @@
          <label>Genre: </label>
 	 <input name='name' type='text' 
 	     placeholder='Fantasy, Poetry, etc.'
-	     value= <%= 'undefined' == typeof locals.genre ? '' : genre.name %> 
+	     value= <%= locals.genre ? genre.name : '' %> 
 	 >
 	 </input>
 	 <input type='submit' value='Add Genre'></input>

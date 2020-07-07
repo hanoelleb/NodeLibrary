@@ -10,32 +10,32 @@
          <label>First Name: </label>
          <input name='first_name' type='text' 
              placeholder='First Name'
-             value= <%= 'undefined' == typeof locals.author ? 
-	         '' : author.first_name %> 
+             value= <%= locals.author ? 
+	         author.first_name : '' %> 
          >
          </input>
 
 	 <label>Family Name: </label>
          <input name='family_name' type='text'
              placeholder='Family Name'
-             value= <%= 'undefined' == typeof locals.author ?
-                 '' : author.family_name %>
+             value= <%= locals.author ?
+                 author.family_name : '' %>
          >
          </input>
 
 	 <label>Date of Birth: </label>
 	 <input name='date_of_birth' type='date'
              placeholder='dd/mm/yyyy'
-             value= <%= 'undefined' == typeof locals.author ?
-	     '' : author.date_of_birth %>
+             value= <%= locals.author ?
+	     author.formatted_birth_date : '' %>
 	 >
 	 </input>
 
 	 <label>Date of Death: </label>
          <input name='date_of_death' type='date'
              placeholder='dd/mm/yyyy'
-             value= <%= 'undefined' == typeof locals.author ?
-             '' : author.date_of_death %>
+             value= <%= locals.author ?
+             author.formatted_death_date : '' %>
          >
          </input>
 
